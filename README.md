@@ -29,10 +29,11 @@ Debian NAS 服务器
 
 ## Mac NAS Lab
 
-Mac NAS Lab 是 V0.1 prepare 的本机实验环境，不是最终部署形态。当前已沉淀 FileBrowser 的 Compose 模板：
+Mac NAS Lab 是 V0.1 prepare 的本机实验环境，不是最终部署形态。当前已沉淀 FileBrowser 和 Jellyfin 的 Compose 模板：
 
 ```text
 compose/mac-lab/filebrowser.compose.yml
+compose/mac-lab/jellyfin.compose.yml
 ```
 
 恢复实验环境：
@@ -40,17 +41,26 @@ compose/mac-lab/filebrowser.compose.yml
 ```bash
 colima start
 docker compose -f compose/mac-lab/filebrowser.compose.yml up -d
+docker compose -f compose/mac-lab/jellyfin.compose.yml up -d
 ```
 
 访问入口：
 
 ```text
-http://localhost:8081
+FileBrowser: http://localhost:8081
+Jellyfin: http://localhost:8096
+```
+
+Jellyfin 首次设置媒体库时，视频目录选择：
+
+```text
+/media/videos
 ```
 
 停止实验环境：
 
 ```bash
+docker compose -f compose/mac-lab/jellyfin.compose.yml down
 docker compose -f compose/mac-lab/filebrowser.compose.yml down
 colima stop
 ```

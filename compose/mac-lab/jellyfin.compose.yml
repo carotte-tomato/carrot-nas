@@ -1,0 +1,14 @@
+services:
+  jellyfin:
+    image: ghcr.io/jellyfin/jellyfin:latest
+    container_name: carrot-jellyfin
+    restart: unless-stopped
+    ports:
+      - "8096:8096"
+    environment:
+      - TZ=Asia/Shanghai
+      - JELLYFIN_PublishedServerUrl=http://localhost:8096
+    volumes:
+      - ${HOME}/carrot-nas-lab/appdata/jellyfin/config:/config
+      - ${HOME}/carrot-nas-lab/appdata/jellyfin/cache:/cache
+      - ${HOME}/carrot-nas-lab/media/videos:/media/videos:ro
